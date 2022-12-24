@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -78,6 +82,18 @@ body {
     width: min-content;
 }
 
+.name-box {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-style: solid;
+    height: 40px;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.05);   
+    width: 610px;
+    max-width: 1200px;
+    border-radius: 8px;
+    padding-left: 20px;
+}
+
 .prompt-box {
     border-bottom-width: 1px;
     border-color: rgba(255, 255, 255, 0.1);
@@ -118,7 +134,7 @@ textarea {
 }
 
 
-.prompt-box:focus {
+.prompt-box:focus, .name-box:focus {
     border-color:rgba(255, 255, 255, 0.75)
 }
 
@@ -326,6 +342,15 @@ textarea {
     color: rgba(255, 255, 255, 0.5);
 }
 
+.footer p {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.footer p a{
+    color: rgba(215, 255, 215, 0.75)
+    
+}
+
 @media (min-width: 810px) and (max-width: 1199px) {
     .container {
         max-width: 600px;
@@ -337,7 +362,7 @@ textarea {
         width: 100%;
     }
 
-    .prompt-box {
+    .prompt-box, .name-box {
         width: 100%;
     }
 }
@@ -353,23 +378,35 @@ textarea {
         width: 100%;
     }
 
-    .prompt-box {
+    .prompt-box, .name-box {
         width: 100%;
     }
 }
 
 @media (max-width: 600px) {
+    * {
+        text-align: left;
+    }
+    
     .container {
         max-width: 400px;
         width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        gap: 1rem;
+    }
+    
+    .header{
+        align-items: flex-start;
     }
 
     .header-title h1 {
         font-size: 50px;
+        text-align: left
     }
 
     .header-subtitle h2 {
-        text-align: center;
+        text-align: left;
     }
 
     .key-stroke, .or {
@@ -384,8 +421,12 @@ textarea {
         max-width: 400px;
         width: 100%;
     }
+    
+    .output-content p {
+        text-align: left
+    }
 
-    .prompt-box {
+    .prompt-box, .name-box {
         width: 100%;
     }
 }
