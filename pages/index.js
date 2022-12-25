@@ -6,6 +6,7 @@ import kohaImage from "../assets/koha.jpg";
 const Home = () => {
   const [userInput, setUserInput] = useState("");
   const [userName, setUserName] = useState("");
+  const [copyText, setCopyText] = useState("Copy");
   const [apiOutput, setApiOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -17,7 +18,6 @@ const Home = () => {
       return
     }
 
-    console.log("Calling OpenAI...");
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
@@ -28,20 +28,30 @@ const Home = () => {
 
     const data = await response.json();
     const { output } = data;
-    console.log("OpenAI replied...", output.text);
 
     setApiOutput(`${output.text}`);
     setIsGenerating(false);
   };
   
+  const prefillInput = async () => {
+    setUserName("Joshua")
+    setUserInput("Jude is the best friend to go fishing with. Has the sharpest taste in music.")
+    await callGenerateEndpoint();
+  }
+  
   const onUserChangedText = (event) => {
-    console.log(event.target.value);
     setUserInput(event.target.value);
   };
   
   const onUserName = (event) => {
     setUserName(event.target.value);
   };
+  
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(apiOutput);
+    setCopyText("Copied");
+    setTimeout(()=> setCopyText("Copy"), 3000);
+  }
 
   return (
     <div className="root">
@@ -51,12 +61,12 @@ const Home = () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Bloop</h1>
+            <h1>:Bloop</h1>
           </div>
           <div className="header-subtitle">
             <h2>
               Bloop is gonna help you write the sweetest christmas greetings
-              to the ones you love
+              to the ones you love. <span className="show-sample" onClick={prefillInput}>Show me an example</span>
             </h2>
           </div>
         </div>
@@ -92,6 +102,7 @@ const Home = () => {
     </div>
     <div className="output-content">
       <p>{apiOutput}</p>
+      <p className="copyBtn" onClick={copyToClipboard}>{copyText}</p>
     </div>
   </div>
 )}
