@@ -70,6 +70,13 @@ body {
     color: rgba(255, 255, 255, 0.75);
 }
 
+.show-sample {
+    text-decoration: underline;
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.55)
+}
+
 .prompt-container {
     place-content: flex-end center;
     align-items: center;

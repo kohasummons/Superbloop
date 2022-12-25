@@ -32,6 +32,12 @@ const Home = () => {
     setIsGenerating(false);
   };
   
+  const prefillInput = async () => {
+    setUserName("Joshua")
+    setUserInput("Jude is the best friend to go fishing with. Has the sharpest taste in music.")
+    await callGenerateEndpoint();
+  }
+  
   const onUserChangedText = (event) => {
     setUserInput(event.target.value);
   };
@@ -48,12 +54,12 @@ const Home = () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Bloop</h1>
+            <h1>:Bloop</h1>
           </div>
           <div className="header-subtitle">
             <h2>
               Bloop is gonna help you write the sweetest christmas greetings
-              to the ones you love
+              to the ones you love. <span className="show-sample" onClick={prefillInput}>Show me an example</span>
             </h2>
           </div>
         </div>
