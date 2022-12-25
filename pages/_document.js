@@ -8,7 +8,7 @@ export default function Document() {
         <meta property="og:description" content="Bloop is gonna help you write the sweetest christmas greetings to the ones you love" key="description"/>
         <meta
           property="og:image"
-          content="https://cdn.buildspace.so/courses/gpt3-writer/project-og.jpg"
+          content="https://github.com/kohasummons/gpt3-writer-starter/blob/main/assets/twitter-og.png"
         />
         <meta name="twitter:card" content="summary_large_image"></meta>
       </Head>
