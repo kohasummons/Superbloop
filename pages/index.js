@@ -6,6 +6,7 @@ import kohaImage from "../assets/koha.jpg";
 const Home = () => {
   const [userInput, setUserInput] = useState("");
   const [userName, setUserName] = useState("");
+  const [copyText, setCopyText] = useState("Copy");
   const [apiOutput, setApiOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -45,6 +46,12 @@ const Home = () => {
   const onUserName = (event) => {
     setUserName(event.target.value);
   };
+  
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(apiOutput);
+    setCopyText("Copied");
+    setTimeout(()=> setCopyText("Copy"), 3000);
+  }
 
   return (
     <div className="root">
@@ -95,6 +102,7 @@ const Home = () => {
     </div>
     <div className="output-content">
       <p>{apiOutput}</p>
+      <p className="copyBtn" onClick={copyToClipboard}>{copyText}</p>
     </div>
   </div>
 )}
