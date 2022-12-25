@@ -12,10 +12,10 @@ const Home = () => {
 
   const callGenerateEndpoint = async () => {
     setIsGenerating(true);
-    
-    if(userName === "") {
+
+    if (userName === "") {
       setIsGenerating(false);
-      return
+      return;
     }
 
     const response = await fetch("/api/generate", {
@@ -32,31 +32,35 @@ const Home = () => {
     setApiOutput(`${output.text}`);
     setIsGenerating(false);
   };
-  
+
   const prefillInput = async () => {
-    setUserName("Joshua")
-    setUserInput("Jude is the best friend to go fishing with. Has the sharpest taste in music.")
+    setUserName("Joshua");
+    setUserInput(
+      "Jude is the best friend to go fishing with. Has the sharpest taste in music."
+    );
     await callGenerateEndpoint();
-  }
-  
+  };
+
   const onUserChangedText = (event) => {
     setUserInput(event.target.value);
   };
-  
+
   const onUserName = (event) => {
     setUserName(event.target.value);
   };
-  
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(apiOutput);
     setCopyText("Copied");
-    setTimeout(()=> setCopyText("Copy"), 3000);
-  }
+    setTimeout(() => setCopyText("Copy"), 3000);
+  };
 
   return (
     <div className="root">
       <Head>
-        <title>Bloop - Send fun, merry greetings faster that you can spell jack  </title>
+        <title>
+          Bloop - Send fun, merry greetings faster that you can spell jack{" "}
+        </title>
       </Head>
       <div className="container">
         <div className="header">
@@ -65,17 +69,20 @@ const Home = () => {
           </div>
           <div className="header-subtitle">
             <h2>
-              Bloop is gonna help you write the sweetest christmas greetings
-              to the ones you love. <span className="show-sample" onClick={prefillInput}>Show me an example</span>
+              Bloop is gonna help you write the sweetest christmas greetings to
+              the ones you love.{" "}
+              <span className="show-sample" onClick={prefillInput}>
+                Show me an example
+              </span>
             </h2>
           </div>
         </div>
         <div className="prompt-container">
-          <input 
+          <input
             className="name-box"
             onChange={onUserName}
             value={userName}
-            placeholder="What's your name?" 
+            placeholder="What's your name?"
           />
           <textarea
             value={userInput}
@@ -84,28 +91,36 @@ const Home = () => {
             className="prompt-box"
           />
           <div className="prompt-buttons">
-  <a
-    className={isGenerating ? 'generate-button loading' : 'generate-button'}
-    onClick={callGenerateEndpoint}
-  >
-    <div className="generate">
-    {isGenerating ? <span className="loader"></span> : <p>Generate</p>}
-    </div>
-  </a>
-</div>
-           {apiOutput && (
-  <div className="output">
-    <div className="output-header-container">
-      <div className="output-header">
-        <h3>Output</h3>
-      </div>
-    </div>
-    <div className="output-content">
-      <p>{apiOutput}</p>
-      <p className="copyBtn" onClick={copyToClipboard}>{copyText}</p>
-    </div>
-  </div>
-)}
+            <a
+              className={
+                isGenerating ? "generate-button loading" : "generate-button"
+              }
+              onClick={callGenerateEndpoint}
+            >
+              <div className="generate">
+                {isGenerating ? (
+                  <span className="loader"></span>
+                ) : (
+                  <p>Generate</p>
+                )}
+              </div>
+            </a>
+          </div>
+          {apiOutput && (
+            <div className="output">
+              <div className="output-header-container">
+                <div className="output-header">
+                  <h3>Output</h3>
+                </div>
+              </div>
+              <div className="output-content">
+                <p>{apiOutput}</p>
+                <p className="copyBtn" onClick={copyToClipboard}>
+                  {copyText}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       {/* <div className="badge-container grow">
@@ -121,10 +136,27 @@ const Home = () => {
         </a>
       </div> */}
       <div className="footer">
-        <p>Love, <a
-          href="https://twitter.com/kohawithstuff"
-          target="_blank"
-          rel="noreferrer">Koha🌵</a> and Jide</p></div>
+        <p>
+          Love,{" "}
+          <a
+            href="https://twitter.com/kohawithstuff"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Koha🌵
+          </a>{" "}
+          and Jide
+        </p>
+        <p>
+          <a
+            href="https://www.buymeacoffee.com/koha"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Buy Me Chicken nuggetsssssss🍗
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
