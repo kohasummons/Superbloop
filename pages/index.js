@@ -23,7 +23,7 @@ const Home = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userInput }),
+      body: JSON.stringify({ userInput, userName }),
     });
 
     const data = await response.json();
@@ -64,6 +64,7 @@ const Home = () => {
           <input 
             className="name-box"
             onChange={onUserName}
+            value={userName}
             placeholder="What's your name?" 
           />
           <textarea
